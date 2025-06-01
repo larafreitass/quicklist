@@ -7,7 +7,7 @@ function addItem() {
         alert("Não é possível adicionar um item em branco!")
         return
     }
-    
+
     const item = {
         name: itemName,
         checked: false
@@ -24,15 +24,18 @@ function showItemsList() {
     const sectionList = document.querySelector(".list")
     sectionList.textContent = ""
 
+    items.sort((itemA, itemB) => Number(itemA.checked) - Number(itemB.checked))
+      
+
     items.map((item, index) => {
         sectionList.innerHTML += `
                 <div class="item">
                         <div>
                             <input type="checkbox" name="list" id="item-${index}" ${item.checked ? 'checked' : ''}>
-                            <div class="custom-checkbox" onclick="ckeckItem('${item.name}')">
+                            <div class="custom-checkbox" onclick="checkItem('${item.name}')">
                                 <img src="assets/checked.svg" alt="checked">
                             </div>
-                            <label for="item-${index}" onclick="ckeckItem('${item.name}')">${item.name}</label>
+                            <label for="item-${index}" onclick="checkItem('${item.name}')">${item.name}</label>
                         </div>
 
                         <button onclick = "removeItem('${item.name}')">
